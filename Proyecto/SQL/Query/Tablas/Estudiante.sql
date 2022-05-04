@@ -15,7 +15,17 @@ CREATE TABLE Estudiante(
     rol_id smallint,
 	
     FOREIGN KEY(rol_id) REFERENCES rol(rol_id),
-    FOREIGN KEY(Facultad) REFERENCES facultad(Nombre),
+	FOREIGN KEY(Facultad) REFERENCES facultad(Nombre),
     FOREIGN KEY(Programa) REFERENCES programa(Nombre),
     CHECK(Semestre>0 and Semestre <= 10)
 );
+
+INSERT INTO estudiante
+VALUES ("giovannileon2017", SHA1("contraseña"));
+
+select * from estudiante;
+
+SELECT * FROM estudiante 
+WHERE Correo_institucional like "giovannileon2017@gmail.com";
+
+select SHA1("contraseña") encriptado;
