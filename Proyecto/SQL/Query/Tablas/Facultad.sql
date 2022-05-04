@@ -3,7 +3,7 @@ USE sistematickets;
 DROP TABLE IF EXISTS Facultad;
 
 CREATE TABLE Facultad(
-	Id_facultad int PRIMARY KEY NOT NULL,
-    Nombre varchar(25),
-    UNIQUE (Nombre)
+	Id_facultad smallint PRIMARY KEY NOT NULL,
+    Facultad varchar(40) NOT NULL,
+    UNIQUE (Facultad)
 );

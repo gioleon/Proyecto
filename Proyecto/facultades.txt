@@ -1,0 +1,3 @@
+1;ciencias economicas, administrativas y contables
+2;ciencias sociales y humanas
+3;ingenieria

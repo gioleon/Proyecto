@@ -16,6 +16,6 @@ CREATE TABLE Peticiones(
     
     FOREIGN KEY (Id_estudiante) REFERENCES estudiante(Id_estudiante),
     FOREIGN KEY (Id_asistente) REFERENCES asistente(Id_asistente),
-	FOREIGN KEY (Facultad) REFERENCES facultad(Nombre),
-    FOREIGN KEY (Programa) REFERENCES programa(Nombre)
+	FOREIGN KEY (Facultad) REFERENCES facultad(Facultad),
+    FOREIGN KEY (Programa) REFERENCES programa(Programa)
     );
