@@ -7,16 +7,16 @@ CREATE TABLE Estudiante(
     Identificacion varchar(10) NOT NULL UNIQUE,
 	Nombre varchar(25) NOT NULL,
     Apellido varchar(25) NOT NULL,
-    Correo_institucional varchar(40) NOT NULL,
+    Correo_institucional varchar(60) NOT NULL,
     Contraseña varchar(255) NOT NULL,
     Semestre smallint NOT NULL,
-    Facultad varchar(40) NOT NULL,
-    Programa varchar(40) NOT NULL,
+    Facultad varchar(100) NOT NULL,
+    Programa varchar(100) NOT NULL,
     rol_id smallint,
 	
     FOREIGN KEY(rol_id) REFERENCES rol(rol_id),
-	FOREIGN KEY(Facultad) REFERENCES facultad(Nombre),
-    FOREIGN KEY(Programa) REFERENCES programa(Nombre),
+	FOREIGN KEY(Facultad) REFERENCES facultad(Facultad),
+    FOREIGN KEY(Programa) REFERENCES programa(Programa),
     CHECK(Semestre>0 and Semestre <= 10)
 );
 

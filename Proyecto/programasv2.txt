@@ -1,0 +1,37 @@
+1;1;ciencias economicas, administrativas y contables;tecnologia en gestion de marketing
+2;1;ciencias economicas, administrativas y contables;administracion en seguridad y salud en el trabajo
+3;3;ingenieria;ingenieria civil
+4;3;ingenieria;tecnologia en produccion industrial
+5;3;ingenieria;tecnologia en seguridad e higiene ocupacional
+6;3;ingenieria;tecnologia en control de calidad
+7;3;ingenieria;tecnologia en gestion ambiental industrial
+8;3;ingenieria;tecnologia en operacion de plantas y procesos industriales
+9;3;ingenieria;tecnologia en instrumentacion industrial
+10;3;ingenieria;tecnologia en control electronico de procesos
+11;3;ingenieria;tecnologia en desarrollo de software
+12;3;ingenieria;tecnologia en redes de comunicaciones y servicios convergentes
+13;3;ingenieria;ingenieria industrial 
+14;2;ciencias sociales y humanas;derecho
+15;2;ciencias sociales y humanas;psicologia 
+16;2;ciencias sociales y humanas;trabajo social
+17;1;ciencias economicas, administrativas y contables;tecnologia en gestion turistica y hotelera
+18;1;ciencias economicas, administrativas y contables;tecnologia en gestion logistica y portuaria
+19;1;ciencias economicas, administrativas y contables;tecnologia en gestion de negocios internacionales
+20;1;ciencias economicas, administrativas y contables;tecnologia en gestion financiera
+21;1;ciencias economicas, administrativas y contables;tecnologia en contabilidad sistematizada 
+22;1;ciencias economicas, administrativas y contables;contaduria publica
+23;3;ingenieria;ingenieria de procesos
+24;3;ingenieria;ingenieria de sistemas
+25;1;ciencias economicas, administrativas y contables;administracion de empresas
+26;3;ingenieria;ingenieria electronica
+27;3;ingenieria;ingenieria ambiental
+28;1;ciencias economicas, administrativas y contables;especializacion en finanzas
+29;1;ciencias economicas, administrativas y contables;especializacion en gestion tributaria
+30;1;ciencias economicas, administrativas y contables;especializacion en gerencia de proyectos
+31;1;ciencias economicas, administrativas y contables;especializacion en gerencia estrategica de marketing
+32;1;ciencias economicas, administrativas y contables;especializacion en gestion estrategica del talento humano
+33;1;ciencias economicas, administrativas y contables;especializacion en logistica y distribucion fisica internacional
+34;2;ciencias sociales y humanas;especializacion psicologia social aplicada
+35;3;ingenieria;especializacion en gestion integral en hseq
+36;3;ingenieria;maestria en sistemas de gestion
+37;3;ingenieria;maestria en tecnologias de la informacion y la comunicacion

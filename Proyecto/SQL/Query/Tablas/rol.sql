@@ -13,9 +13,4 @@ CREATE TABLE rol(
 INSERT INTO rol (nombre)
 values("estudiante");
 
-INSERT INTO rol (nombre)
-values("asistente");
-
-INSERT INTO rol (nombre)
-values("directora");
-
+select * from rol;
