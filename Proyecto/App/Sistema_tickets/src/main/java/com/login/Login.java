@@ -7,31 +7,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import com.conexion.Connections;
 
 
 public class Login {
-
-    public static void main(String[] args) {
-        login("giovannileon2017", "contraseñas");
-    }
     
-    public static void login(String correo, String contraseña) {
+    public String login(String correo, String contraseña) {
+        
+        String mensaje = null;
+        
+        Connections conexion = new Connections();
         
         // tablas donde buscará los usuarios
-        List<String> tablas = Arrays.asList("estudiante", "asistente");
+        List<String> tablas = Arrays.asList("estudiante", "personal");
 
         
         
         // variable donde se almancenara la contraseña encriptada
         String encriptado = null;
         
-        // Conexion
-        String url = "jdbc:mysql://localhost:3306/sistematickets?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
         try {
             
             // conectar a la base de datos
-            Connection conexion = DriverManager.getConnection(url, "root", "giovannileon2001");
-            Statement instruccion = conexion.createStatement();
+            Statement instruccion = conexion.conexion();
             
             // variables a extraer de la base de datos
             String correo_match = null;
@@ -54,10 +52,10 @@ public class Login {
                         correo_match = resultado.getString("Correo_institucional");
                         contraseña_match = resultado.getString("Contraseña");   
                         if (correo_match.equals(correo) && contraseña_match.equals(encriptado)) {
-                            System.out.println("Usuario encontrado");
+                            mensaje = "Usuario encontrado %s".formatted(tabla);
                             break;
                         } else {
-                            System.out.println("La credenciales no coinciden");
+                            mensaje = "Las credenciales no coinciden";
                         }
                     }
                 }
@@ -65,10 +63,11 @@ public class Login {
             
             
             if (correo_match == null){
-                System.out.println("Usuario no encontrado");
+                mensaje = "Usuario no encontrado";
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
+        return mensaje;
     }
 }
