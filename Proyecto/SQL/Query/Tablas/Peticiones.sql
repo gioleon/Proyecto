@@ -13,7 +13,7 @@ CREATE TABLE Peticion(
     Informacion varchar(1000) NOT NULL,
     Retroalimentacion varchar(1000) DEFAULT "Sin especificación",
     Fecha_creacion datetime NOT NULL,
-    Fecha_inicion datetime DEFAULT "0/0/0000",
+    Fecha_inicio datetime DEFAULT "0/0/0000",
 	Fecha_final datetime DEFAULT "0/0/0000",
     Estado varchar(15) DEFAULT "Pendiente",
     

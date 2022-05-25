@@ -61,6 +61,10 @@ public class Estudiante extends Persona{
         
     }
     
+    public void verInfoPeticion(){
+        
+    }
+    
     public void verPeticiones(){
         
     }

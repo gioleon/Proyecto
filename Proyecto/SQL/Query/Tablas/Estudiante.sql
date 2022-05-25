@@ -20,3 +20,4 @@ CREATE TABLE Estudiante(
     CHECK(Semestre>0 and Semestre <= 10)
 );
 
+select * from estudiante;

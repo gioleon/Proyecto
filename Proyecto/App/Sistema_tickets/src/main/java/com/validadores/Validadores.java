@@ -3,26 +3,32 @@ package com.validadores;
 import java.util.*;
 import java.util.Arrays;
 import java.util.regex.*;
+import com.model.Admin;
 
 public class Validadores {
 
     public static void main(String[] args) {
-        //System.out.println(nombreApellidos("Hell0 wordl"));
-        //System.out.println(validadorIdentificacion("102141423"));
-        //System.out.println(validadorCorreo("gleonp@tecnocomfenalco.edu.co"));
-        //System.out.println(validadorContraseña("giovannile20#"));
+        Admin admin = new Admin();
+        
+        admin.agregarEstudiante("1002192504", "giovanni", "leon posada", "Giovannileon2001#", "ingenieria", "ingenieria de sistemas");
+//        String correo = "giovanni".split("")[0]+ "leon posada".split(" ")[0] + "leon posada".split(" ")[1].split("")[0]+"@tecnocomfenalco.edu.co";
+//        System.out.println(correo);
+//        System.out.println(nombreApellidos("Hello wordl"));
+//        System.out.println(validadorIdentificacion("102141423"));
+//        System.out.println(validadorCorreo(correo));
+//        System.out.println(validadorContraseña("Giovannile20#"));
         //System.out.println(validadorPrograma("ingenieria de sistemas"));
         
     }
     
-    public static boolean nombreApellidos(String cadena) {
+    public  boolean nombreApellidos(String cadena) {
         Pattern stringPattern = Pattern.compile("[0-9#!\"#$%&()=]+");
         Matcher stringMatcher = stringPattern.matcher(cadena);
 
         return !stringMatcher.find();
     }
     
-    public static boolean validadorIdentificacion(String identificacion){
+    public   boolean validadorIdentificacion(String identificacion){
         Pattern stringPattern = Pattern.compile("[a-zA-Z!#$%&/()=Á-Ýá-ý@*¿?]+{10}");
         Matcher stringMatcher = stringPattern.matcher(identificacion);
         
@@ -36,18 +42,18 @@ public class Validadores {
         return stringMatcher.matches();       
     }
     
-    public static boolean validadorContraseña(String contraseña){
-        Pattern stringPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%#*?&])[A-Za-z\\d$@$!#%*?&]{8,15}");
+    public  boolean validadorContraseña(String contraseña){
+        Pattern stringPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%#*?&])[A-Za-z\\d$@$!#%*?&]{8,30}");
         Matcher stringMatcher = stringPattern.matcher(contraseña);
         
         return stringMatcher.matches();
     }
     
-    public static boolean validadorSemestre(int semestre){
+    public  boolean validadorSemestre(int semestre){
         return semestre > 0 && semestre <= 10;
     }
     
-    public static boolean validadorFacultad(String facultad){
+    public  boolean validadorFacultad(String facultad){
         ArrayList<String> facultades = new ArrayList<String>();
         facultades.add("ciencias economicas, administrativas y contables");
         facultades.add("ciencias sociales y humanas");
@@ -56,7 +62,7 @@ public class Validadores {
         return facultades.contains(facultad);  
     }
     
-    public static boolean validadorPrograma(String programa){
+    public  boolean validadorPrograma(String programa){
         List<String> programas = Arrays.asList("tecnologia en gestion de marketing",
        "administracion en seguridad y salud en el trabajo",
        "ingenieria civil', 'tecnologia en produccion industrial",

@@ -8,7 +8,10 @@ CREATE TABLE Programa(
     Facultad varchar(100) NOT NULL, 
     Programa varchar(100) NOT NULL,
     FOREIGN KEY(Id_facultad) REFERENCES Facultad(Id_facultad),
+    FOREIGN KEY(Facultad) REFERENCES Facultad(Facultad),
     UNIQUE (Programa)
 );
 
-select * from programa;
+use sistematickets;
+select * from programa
+where Facultad = "ingenieria";
