@@ -10,7 +10,9 @@ public class Validadores {
     public static void main(String[] args) {
         Admin admin = new Admin();
         
-        admin.agregarEstudiante("1002192504", "giovanni", "leon posada", "Giovannileon2001#", "ingenieria", "ingenieria de sistemas");
+       
+//        admin.eliminarUsuario("1002192504", "personal");
+//        admin.agregarAsistente("1002192504", "giovanni", "leon posada", "Giovannileon2001#", "ingenieria", "ingenieria de sistemas");
 //        String correo = "giovanni".split("")[0]+ "leon posada".split(" ")[0] + "leon posada".split(" ")[1].split("")[0]+"@tecnocomfenalco.edu.co";
 //        System.out.println(correo);
 //        System.out.println(nombreApellidos("Hello wordl"));

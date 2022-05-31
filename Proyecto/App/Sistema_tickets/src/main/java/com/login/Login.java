@@ -45,12 +45,12 @@ public class Login {
             
             // comenzando validacion de datos
             for (String tabla : tablas) {
-                String query = "select Correo_institucional, Contraseña from %s WHERE Correo_institucional = %s".formatted(tabla, "\"" + correo+"\"");
+                String query = "select correo_institucional, contraseña from %s WHERE correo_institucional = %s".formatted(tabla, "\"" + correo+"\"");
                 ResultSet resultado = instruccion.executeQuery(query);
                 if (!tabla.isEmpty()) {
                     while (resultado.next()) {
-                        correo_match = resultado.getString("Correo_institucional");
-                        contraseña_match = resultado.getString("Contraseña");   
+                        correo_match = resultado.getString("correo_institucional");
+                        contraseña_match = resultado.getString("contraseña");   
                         if (correo_match.equals(correo) && contraseña_match.equals(encriptado)) {
                             mensaje = "Usuario encontrado %s".formatted(tabla);
                             break;

@@ -3,21 +3,21 @@ USE sistematickets;
 DROP TABLE IF EXISTS Peticion;
 
 CREATE TABLE Peticion(
-	Id_peticion bigint PRIMARY KEY,
-    Id_estudiante bigint,
-    Id_personal bigint DEFAULT -1,
-    Encargado varchar(30) DEFAULT "Sin asignar",
-    Facultad varchar(100),
-    Programa varchar(100),
-    Asunto varchar(25) NOT NULL,
-    Informacion varchar(1000) NOT NULL,
-    Retroalimentacion varchar(1000) DEFAULT "Sin especificación",
-    Fecha_creacion datetime NOT NULL,
-    Fecha_inicio datetime DEFAULT "0/0/0000",
-	Fecha_final datetime DEFAULT "0/0/0000",
-    Estado varchar(15) DEFAULT "Pendiente",
+	id_peticion bigint PRIMARY KEY,
+    id_estudiante bigint,
+    id_personal bigint DEFAULT -1,
+    nombre_facultad varchar(100),
+    nombre_programa varchar(100),
+    asunto varchar(100) NOT NULL,
+    informacion varchar(1000) NOT NULL,
+    retroalimentacion varchar(1000) DEFAULT "sin especificación",
+    fecha_creacion datetime NOT NULL,
+    fecha_inicio datetime DEFAULT "0/0/0000",
+	fecha_final datetime DEFAULT "0/0/0000",
+    estado varchar(15) DEFAULT "sin asignar",
     
-    FOREIGN KEY (Id_estudiante) REFERENCES estudiante(Id_estudiante),
-    FOREIGN KEY (Id_personal) REFERENCES personal(Id_personal),
-    FOREIGN KEY (Programa) REFERENCES programa(Programa)
+    FOREIGN KEY (id_estudiante) REFERENCES estudiante(id_estudiante),
+    FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
+    FOREIGN KEY (nombre_programa) REFERENCES programa(nombre_programa),
+    FOREIGN KEY (nombre_facultad) REFERENCES facultad(nombre_facultad)
     );
