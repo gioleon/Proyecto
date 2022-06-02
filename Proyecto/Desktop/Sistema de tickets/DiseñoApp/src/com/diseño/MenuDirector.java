@@ -5,6 +5,9 @@
  */
 package com.diseño;
 
+import com.tablas.MisTicketsDirector;
+import com.tablas.MisTicketsDirectorAsignar;
+
 /**
  *
  * @author Runaw
@@ -83,11 +86,17 @@ public class MenuDirector extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVerTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerTicketsActionPerformed
-        // TODO add your handling code here:
+        MisTicketsDirector direc = new MisTicketsDirector();
+        direc.setVisible(true);
+        this.dispose();
+        
     }//GEN-LAST:event_btVerTicketsActionPerformed
 
     private void btAsignarTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAsignarTicketsActionPerformed
         // TODO add your handling code here:
+        MisTicketsDirectorAsignar direc = new MisTicketsDirectorAsignar();
+        direc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btAsignarTicketsActionPerformed
 
     private void btCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCerrarSesionMouseClicked

@@ -7,6 +7,8 @@ public class Persona {
     String correo;
     String facultad;
     String programa;
+    
+    public Persona(){};
 
     public Persona(String identificacion, String nombre, String apellido, String correo, String facultad, String programa) {
         this.identificacion = identificacion;

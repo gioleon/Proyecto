@@ -13,6 +13,7 @@ CREATE TABLE Estudiante(
     nombre_facultad varchar(100) NOT NULL,
     nombre_programa varchar(100) NOT NULL,
     rol_id smallint,
+    estado varchar(20) default "activo",
 	
     FOREIGN KEY(rol_id) REFERENCES rol(rol_id),
 	FOREIGN KEY(nombre_facultad) REFERENCES facultad(nombre_facultad),
@@ -22,3 +23,4 @@ CREATE TABLE Estudiante(
 
 USE sistematickets;
 select * from estudiante;
+

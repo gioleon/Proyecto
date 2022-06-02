@@ -1,6 +1,7 @@
 package com.model;
 
 import com.conexion.Connections;
+import com.create_txt.CreateFile;
 import com.model.Persona;
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Director extends Persona {
     long id_personal;
     int rol_id;
 
+    public Director(){};
     public Director(long id_personal, int rol_id, String identificacion, String nombre, String apellido, String correo, String facultad, String programa) {
         super(identificacion, nombre, apellido, correo, facultad, programa);
         this.id_personal = id_personal;
@@ -50,8 +52,7 @@ public class Director extends Persona {
         return programa;
     }
 
-    public ArrayList<ArrayList> verTickets(String programa) {
-        
+    public ArrayList<ArrayList> verTickets(int id_personal){
         ArrayList<ArrayList> listObj = new ArrayList<ArrayList>();
         
         ArrayList<Long> id_peticiones = new ArrayList<Long>();
@@ -70,7 +71,7 @@ public class Director extends Persona {
 
         Statement instruccion = con.conexion();
 
-        String query = "SELECT id_peticion, asunto, informacion, estado FROM peticiones where nombre_programa = %s".formatted(programa);
+        String query = "SELECT id_peticion, asunto, informacion, estado FROM peticion where id_personal= %d".formatted(id_personal);
 
         try {
             ResultSet result = instruccion.executeQuery(query);
@@ -80,15 +81,17 @@ public class Director extends Persona {
                 asunto = result.getString("asunto");
                 informacion = result.getString("informacion");
                 estado = result.getString("estado");
+                
+                 id_peticiones.add(id_peticion);
+                asuntos.add(asunto);
+                informaciones.add(informacion);
+                estados.add(estado);
             }
             
-            id_peticiones.add(id_peticion);
-            asuntos.add(asunto);
-            informaciones.add(informacion);
-            estados.add(estado);
+           
             
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
         }
       listObj.add(id_peticiones);
       listObj.add(asuntos);
@@ -120,7 +123,7 @@ public class Director extends Persona {
 
         Statement instruccion = con.conexion();
 
-        String query = "SELECT * FROM peticiones where id_peticion = %d".formatted(Integer.parseInt(id));
+        String query = "SELECT * FROM peticion where id_peticion = %d".formatted(Integer.parseInt(id));
 
         try {
             ResultSet result = instruccion.executeQuery(query);
@@ -152,33 +155,55 @@ public class Director extends Persona {
         return listObj;
     }
 
-    public void solucionarTickets(String id) {
+    public void solucionarTickets(int id_peticion){
+        
         Connections con = new Connections();
+        
+        Statement instruccion = con.conexion();
 
-        String query = """
-                       UPDATE peticiones
-                       SET estado = "enviado" AND
-                       fecha_final = (select current_date())
-                       WHERE id_peticion = %d;
-                       """.formatted(Integer.parseInt(id));
+        String query = " UPDATE peticion SET estado = \"enviado\", fecha_final = (select current_date()) WHERE id_peticion = %d;".formatted(id_peticion);
+        
+        try {
+            instruccion.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Asistente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
 
     public ArrayList<ArrayList> listaAsignarTickets() {
+        CreateFile file = new CreateFile();
         Connections con = new Connections();
+        String nombre_programa = "";
 
         ArrayList<String> peticiones = new ArrayList<String>();
         ArrayList<String> asuntos = new ArrayList<String>();
-        ArrayList<String> id_personal = new ArrayList<String>();
+        ArrayList<Integer> id_personal = new ArrayList<Integer>();
         ArrayList<String> nombre_personal = new ArrayList<String>();
 
         Statement instruccion = con.conexion();
-
-        String query1 = "SELECT id_peticion, asunto from peticiones where nombre_programa = \"%s\" AND estado = \"sin asignar\";".formatted(this.programa);
-        String query2 = "SELECT id_personal, nombre, apellido from personal where nombre_programa = \"%s\"".formatted(this.programa);
+        Statement instruccion2 = con.conexion();
+        Statement instruccion3 = con.conexion();
+        
+        
+        String query_programa = "SELECT nombre_programa from personal where correo_institucional = \"%s\"".formatted(file.readerTxt().get(0));
+        
+        try {
+            ResultSet resultado_programa = instruccion.executeQuery(query_programa);
+            while (resultado_programa.next()){
+                nombre_programa = resultado_programa.getString("nombre_programa");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Director.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String query1 = "SELECT id_peticion, asunto from peticion where nombre_programa = \"%s\" AND estado = \"sin asignar\";".formatted(nombre_programa);
+        String query2 = "SELECT id_personal, nombre, apellido from personal where nombre_programa = \"%s\"".formatted(nombre_programa);
 
         try {
-            ResultSet result = instruccion.executeQuery(query1);
-            ResultSet result2 = instruccion.executeQuery(query2);
+            ResultSet result = instruccion2.executeQuery(query1);
+            ResultSet result2 = instruccion3.executeQuery(query2);
             while (result.next()) {
                 String id_peticion = Integer.toString(result.getInt("id_peticion"));
                 String asunto = result.getString("asunto");
@@ -191,7 +216,7 @@ public class Director extends Persona {
             while (result2.next()) {
 
                 String nombre = result2.getString("nombre") + " " + result2.getString("apellido").split(" ")[0];
-                String id_persona = Integer.toString(result2.getInt("id_personal"));
+                int id_persona = result2.getInt("id_personal");
 
                 nombre_personal.add(nombre);
                 id_personal.add(id_persona);
@@ -211,23 +236,13 @@ public class Director extends Persona {
         return listObject;
     }
 
-    public void asignarTickets(String id_peticion, String id_personal) {
+    public void asignarTickets(int id_peticion, int id_personal) {
 
         Connections con = new Connections();
 
         Statement instruccion = con.conexion();
-
-        int id_persona = Integer.parseInt(id_personal);
-
-        int id_peticiones = Integer.parseInt(id_peticion);
-
-        String query = """
-                       UPDATE peticiones
-                      SET id_personal = %d AND
-                       estado = "en progreso" AND
-                       fecha_inicio = (SELECT CURRENT_DATE())
-                       WHERE id_peticion = %d;
-                       """.formatted(id_persona, id_peticiones);
+        
+        String query = "UPDATE peticion SET id_personal = %d, estado = \"en progreso\", fecha_inicio = (SELECT CURRENT_DATE()) WHERE id_peticion = %d; ".formatted(id_personal, id_peticion);
 
         try {
             instruccion.executeUpdate(query);

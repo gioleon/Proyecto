@@ -6,6 +6,7 @@
 package com.diseño;
 
 import com.conexion.Connections;
+import com.create_txt.CreateFile;
 import com.model.*;
 import java.sql.*;
 import java.util.*;
@@ -96,6 +97,11 @@ public class Login extends javax.swing.JFrame {
         userLogin.setFont(new java.awt.Font("Poppins", 1, 11)); // NOI18N
         userLogin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         userLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        userLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userLoginActionPerformed(evt);
+            }
+        });
         jPanel2.add(userLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 140, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/identidad-login.png"))); // NOI18N
@@ -204,18 +210,28 @@ public class Login extends javax.swing.JFrame {
                         Asistente asistente = new Asistente(id, rol_id, identificacion, nombre, apellido, correo, facultad, programa);
                         givePersona(asistente);
                         menuAsistente.setVisible(true);
+                        
 
                     }
 
                 } 
             }
-
             this.dispose();
 // TODO add your handling code here:
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        CreateFile file = new CreateFile();
+        
+        file.createTxt(userLogin.getText(), contraseñaLogin.getText());
+        
     }//GEN-LAST:event_btloginMouseClicked
+
+    
+    private void userLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userLoginActionPerformed
 
     public Persona givePersona(Persona persona){
         return persona;
@@ -253,6 +269,7 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

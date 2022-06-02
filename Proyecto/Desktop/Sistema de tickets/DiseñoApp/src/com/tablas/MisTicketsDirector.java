@@ -1,19 +1,32 @@
 package com.tablas;
 
+import com.conexion.Connections;
+import com.create_txt.CreateFile;
+import com.diseño.MenuDirector;
 import com.diseño.MenuEstudiante;
+import com.model.Asistente;
+import com.model.Director;
+import com.model.Estudiante;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class MisTickets extends javax.swing.JFrame {
+public class MisTicketsDirector extends javax.swing.JFrame {
 
-    TablaEstudiantes te = new TablaEstudiantes();
-    
-   DefaultTableModel modelo;
-    public MisTickets() {
+    TablaDirector td = new TablaDirector();
+
+    DefaultTableModel modelo;
+
+    public MisTicketsDirector() {
         initComponents();
-        te.ver_tabla(tabla);   
-        modelo = (DefaultTableModel) tabla.getModel();      
+        td.ver_tabla(tabla);
+        modelo = (DefaultTableModel) tabla.getModel();
     }
 
     @SuppressWarnings("unchecked")
@@ -80,8 +93,8 @@ public class MisTickets extends javax.swing.JFrame {
     }//GEN-LAST:event_btregresar1MouseClicked
 
     private void btregresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btregresar1ActionPerformed
-        MenuEstudiante estu1 = new MenuEstudiante();
-        estu1.setVisible(true);
+        MenuDirector direc = new MenuDirector();
+        direc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btregresar1ActionPerformed
 
@@ -95,30 +108,51 @@ public class MisTickets extends javax.swing.JFrame {
             if (value instanceof JButton) {
                 ((JButton) value).doClick();
                 JButton boton = (JButton) value;
-                
-                if (boton.getName().equals("ver")){
-                    
-                   System.out.println(boton.getText());
+
+                if (boton.getName().equals("ver")) {
+
+                    System.out.println(boton.getText());
                 }
-                if (boton.getName().equals("cerrar")){
-                
+                if (boton.getName().equals("cerrar")) {
+                    System.out.println(tabla.getSelectedRow());
+
                     //modelo.removeRow(tabla.getSelectedRow());
                     //                  
 //                  modelo.setValueAt(, row, column);
-
-                    
 //                    tabla.remove(tabla.getSelectedRow());
+                }
+                if (boton.getName().equals("solucionar")) {
+                    Director director = new Director();
 
+                    CreateFile file = new CreateFile();
+
+                    int id_personal = 0;
+
+                    Connections con = new Connections();
+
+                    Statement instruccion = con.conexion();
+
+                    String query_id = "SELECT id_personal from personal where correo_institucional = \"%s\";".formatted(file.readerTxt().get(0));
+
+                    try {
+                        ResultSet result = instruccion.executeQuery(query_id);
+
+                        while (result.next()) {
+                            id_personal = result.getInt("id_personal");
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(TablaEstudiantes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    ArrayList<ArrayList> listObj = director.verTickets(id_personal);//persona.vermistickets
+                
+                    director.solucionarTickets(Integer.parseInt(listObj.get(0).get(tabla.getSelectedRow()).toString()));
+                    JOptionPane.showMessageDialog(null, "Solucion enviada");
                 }
-                if (boton.getName().equals("devolver")){
-                    System.out.println(boton.getText());
-                    
-                               
+
             }
-        
-                }
-            }
-        
+        }
+
     }//GEN-LAST:event_tablaMouseClicked
 
     public static void main(String args[]) {
@@ -135,20 +169,35 @@ public class MisTickets extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MisTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MisTicketsDirector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MisTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MisTicketsDirector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MisTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MisTicketsDirector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MisTickets.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MisTicketsDirector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MisTickets().setVisible(true);
+                new MisTicketsDirector().setVisible(true);
             }
         });
     }

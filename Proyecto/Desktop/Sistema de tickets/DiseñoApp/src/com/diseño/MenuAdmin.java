@@ -12,8 +12,10 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         agregarAsistente = new javax.swing.JButton();
         agregarDirector = new javax.swing.JButton();
-        agregarEstudiante = new javax.swing.JButton();
+        listarEstudiante = new javax.swing.JButton();
         btCerrarSesion = new javax.swing.JButton();
+        listarPersonal = new javax.swing.JButton();
+        agregarEstudiante2 = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,17 +45,17 @@ public class MenuAdmin extends javax.swing.JFrame {
         });
         getContentPane().add(agregarDirector, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 200, 60));
 
-        agregarEstudiante.setBackground(new java.awt.Color(47, 38, 127));
-        agregarEstudiante.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        agregarEstudiante.setForeground(new java.awt.Color(255, 255, 255));
-        agregarEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/estudiante.png"))); // NOI18N
-        agregarEstudiante.setText("Agregar Estudiante");
-        agregarEstudiante.addActionListener(new java.awt.event.ActionListener() {
+        listarEstudiante.setBackground(new java.awt.Color(47, 38, 127));
+        listarEstudiante.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
+        listarEstudiante.setForeground(new java.awt.Color(255, 255, 255));
+        listarEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ver-2.png"))); // NOI18N
+        listarEstudiante.setText("Listar Estudiantes");
+        listarEstudiante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                agregarEstudianteActionPerformed(evt);
+                listarEstudianteActionPerformed(evt);
             }
         });
-        getContentPane().add(agregarEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 210, 60));
+        getContentPane().add(listarEstudiante, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 210, 60));
 
         btCerrarSesion.setBackground(new java.awt.Color(191, 13, 13));
         btCerrarSesion.setFont(new java.awt.Font("Poppins", 1, 11)); // NOI18N
@@ -70,7 +72,31 @@ public class MenuAdmin extends javax.swing.JFrame {
                 btCerrarSesionActionPerformed(evt);
             }
         });
-        getContentPane().add(btCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 200, 60));
+        getContentPane().add(btCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 200, 60));
+
+        listarPersonal.setBackground(new java.awt.Color(47, 38, 127));
+        listarPersonal.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
+        listarPersonal.setForeground(new java.awt.Color(255, 255, 255));
+        listarPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ver.png"))); // NOI18N
+        listarPersonal.setText("Listar Personal");
+        listarPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarPersonalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(listarPersonal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 210, 60));
+
+        agregarEstudiante2.setBackground(new java.awt.Color(47, 38, 127));
+        agregarEstudiante2.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
+        agregarEstudiante2.setForeground(new java.awt.Color(255, 255, 255));
+        agregarEstudiante2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/estudiante.png"))); // NOI18N
+        agregarEstudiante2.setText("Agregar Estudiante");
+        agregarEstudiante2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarEstudiante2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(agregarEstudiante2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 210, 60));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menu-admin-100.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -90,11 +116,11 @@ public class MenuAdmin extends javax.swing.JFrame {
     this.dispose();         
     }//GEN-LAST:event_agregarDirectorActionPerformed
 
-    private void agregarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarEstudianteActionPerformed
-    AgregarEstudiantes agregar1 = new AgregarEstudiantes();
-    agregar1.setVisible(true);
+    private void listarEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarEstudianteActionPerformed
+    ListadoEstudiante listarE = new ListadoEstudiante();
+    listarE.setVisible(true);
     this.dispose();
-    }//GEN-LAST:event_agregarEstudianteActionPerformed
+    }//GEN-LAST:event_listarEstudianteActionPerformed
 
     private void btCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCerrarSesionMouseClicked
 
@@ -105,6 +131,17 @@ public class MenuAdmin extends javax.swing.JFrame {
         login1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btCerrarSesionActionPerformed
+
+    private void listarPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarPersonalActionPerformed
+        ListadoPersonal listarP = new ListadoPersonal();
+        listarP.setVisible(true);
+    }//GEN-LAST:event_listarPersonalActionPerformed
+
+    private void agregarEstudiante2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarEstudiante2ActionPerformed
+        AgregarEstudiantes agregar = new AgregarEstudiantes();
+        agregar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_agregarEstudiante2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,8 +181,10 @@ public class MenuAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton agregarAsistente;
     private javax.swing.JButton agregarDirector;
-    private javax.swing.JButton agregarEstudiante;
+    private javax.swing.JButton agregarEstudiante2;
     private javax.swing.JButton btCerrarSesion;
     private javax.swing.JLabel fondo;
+    private javax.swing.JButton listarEstudiante;
+    private javax.swing.JButton listarPersonal;
     // End of variables declaration//GEN-END:variables
 }

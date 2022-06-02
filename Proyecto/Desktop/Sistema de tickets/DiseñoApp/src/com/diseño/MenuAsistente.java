@@ -5,6 +5,8 @@
  */
 package com.diseño;
 
+import com.tablas.MisTicketsAsistente;
+
 /**
  *
  * @author Runaw
@@ -71,6 +73,9 @@ public class MenuAsistente extends javax.swing.JFrame {
 
     private void btVerPeticionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerPeticionesActionPerformed
         // TODO add your handling code here:
+        MisTicketsAsistente asis = new MisTicketsAsistente();
+        asis.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btVerPeticionesActionPerformed
 
     private void btCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCerrarSesionMouseClicked

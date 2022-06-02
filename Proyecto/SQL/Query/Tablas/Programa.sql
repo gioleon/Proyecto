@@ -12,7 +12,3 @@ CREATE TABLE Programa(
     UNIQUE (nombre_programa)
 );
 
-use sistematickets;
-select * from programa
-WHERE nombre_facultad = "ingenieria" AND
-nombre_programa like "ingeniera%%";

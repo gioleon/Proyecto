@@ -1,7 +1,7 @@
 
 package com.diseño;
 
-import com.tablas.MisTickets;
+import com.tablas.MisTicketsEstudiante;
 
 public class MenuEstudiante extends javax.swing.JFrame {
 
@@ -76,7 +76,7 @@ public class MenuEstudiante extends javax.swing.JFrame {
     }//GEN-LAST:event_btCrearTicketActionPerformed
 
     private void btVerTicketsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVerTicketsActionPerformed
-        MisTickets ticket1 = new MisTickets ();
+        MisTicketsEstudiante ticket1 = new MisTicketsEstudiante ();
         ticket1.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btVerTicketsActionPerformed

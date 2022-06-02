@@ -2,12 +2,16 @@
 package com.diseño;
 
 import com.conexion.Connections;
+import com.create_txt.CreateFile;
+import com.model.UserEntity;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 
 public class CrearTicket extends javax.swing.JFrame {
@@ -140,13 +144,36 @@ public class CrearTicket extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        Connections con = new Connections();
-        
-        Statement instruccion = con.conexion();
-        
-        String query = "CALL insertPeticion(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\");";
-        
-        
+        try {
+            
+            CreateFile file = new CreateFile();
+            
+            Login log = new Login();
+            
+            int id_estudiante = 0;
+            ArrayList<String> info = file.readerTxt();
+            
+            Connections con = new Connections();
+            
+            Statement instruccion = con.conexion();
+            
+            String query_id = "SELECT id_estudiante from estudiante where correo_institucional = \"%s\";".formatted(info.get(0));
+            
+            ResultSet result = instruccion.executeQuery(query_id);
+            
+            while (result.next()){
+                id_estudiante = result.getInt("id_estudiante");
+            }
+            
+  
+            String query = "CALL insertPeticion(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\");".formatted(id_estudiante, comboFacultad.getSelectedItem(),
+                    comboPrograma.getSelectedItem(), asuntoTicket.getText(), infoTicket.getText());
+            instruccion.executeUpdate(query);
+            
+            JOptionPane.showMessageDialog(null, "Ticket generado");
+        } catch (SQLException ex) {
+            Logger.getLogger(CrearTicket.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btregresar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btregresar1MouseClicked
@@ -176,6 +203,7 @@ public class CrearTicket extends javax.swing.JFrame {
         Statement instruccion = con.conexion();
        
         String texto = comboFacultad.getSelectedItem().toString();
+        
         
         String query = "Select nombre_programa from programa where nombre_facultad = \"%s\";".formatted(texto);
         
